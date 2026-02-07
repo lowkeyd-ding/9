@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九宫格数独 - 儿童练习版</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 九宫格数独</h1>
+            <p class="subtitle">小朋友,来挑战一下吧!</p>
+        </header>
+
+        <div class="controls">
+            <div class="difficulty-selector">
+                <label>难度选择:</label>
+                <button class="difficulty-btn active" data-level="easy">简单 ⭐</button>
+                <button class="difficulty-btn" data-level="medium">中等 ⭐⭐</button>
+                <button class="difficulty-btn" data-level="hard">困难 ⭐⭐⭐</button>
+            </div>
+            
+            <div class="game-info">
+                <span class="timer">⏱️ 时间: <span id="time">00:00</span></span>
+                <span class="mistakes">❌ 错误: <span id="mistakes">0</span></span>
+            </div>
+        </div>
+
+        <div class="sudoku-grid" id="sudokuGrid"></div>
+
+        <div class="number-pad">
+            <button class="number-btn" data-number="1">1</button>
+            <button class="number-btn" data-number="2">2</button>
+            <button class="number-btn" data-number="3">3</button>
+            <button class="number-btn" data-number="4">4</button>
+            <button class="number-btn" data-number="5">5</button>
+            <button class="number-btn" data-number="6">6</button>
+            <button class="number-btn" data-number="7">7</button>
+            <button class="number-btn" data-number="8">8</button>
+            <button class="number-btn" data-number="9">9</button>
+            <button class="number-btn erase-btn" data-number="0">🗑️ 擦除</button>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-hint" id="hintBtn">💡 提示</button>
+            <button class="btn btn-check" id="checkBtn">✅ 检查</button>
+            <button class="btn btn-new" id="newGameBtn">🎲 新游戏</button>
+        </div>
+
+        <div class="celebration" id="celebration">
+            <div class="celebration-content">
+                <h2>🎉 太棒了!</h2>
+                <p>你完成了九宫格!</p>
+                <p class="final-time">用时: <span id="finalTime"></span></p>
+                <button class="btn btn-new" id="playAgainBtn">再玩一次</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
