@@ -5,19 +5,22 @@
 }
 
 body {
-    font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Arial', 'Microsoft YaHei', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .container {
     background: white;
     border-radius: 20px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     max-width: 600px;
     width: 100%;
@@ -25,7 +28,7 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 h1 {
@@ -327,32 +330,227 @@ h1 {
     font-weight: bold;
 }
 
-/* 响应式设计 */
+/* iPhone 优化 - 适配安全区域 */
+@supports (padding: env(safe-area-inset-top)) {
+    body {
+        padding-top: max(10px, env(safe-area-inset-top));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+    }
+}
+
+/* 响应式设计 - 移动设备通用 */
 @media (max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+    
     .container {
-        padding: 15px;
+        padding: 12px;
+        border-radius: 15px;
+    }
+    
+    header {
+        margin-bottom: 10px;
     }
     
     h1 {
-        font-size: 2em;
+        font-size: 1.8em;
+        margin-bottom: 3px;
     }
     
-    .cell {
-        font-size: 1.2em;
+    .subtitle {
+        font-size: 0.95em;
     }
     
-    .number-btn {
-        padding: 12px;
-        font-size: 1.2em;
+    .controls {
+        margin-bottom: 12px;
+    }
+    
+    .difficulty-selector {
+        margin-bottom: 10px;
+    }
+    
+    .difficulty-selector label {
+        font-size: 0.9em;
+        margin-bottom: 8px;
     }
     
     .difficulty-btn {
-        padding: 8px 15px;
+        padding: 8px 12px;
+        font-size: 0.85em;
+        margin: 3px;
+        border-radius: 20px;
+    }
+    
+    .game-info {
+        padding: 10px;
         font-size: 0.9em;
-        margin: 5px 2px;
+        border-radius: 12px;
+    }
+    
+    .sudoku-grid {
+        margin: 12px 0;
+        border-radius: 8px;
+        max-width: 100%;
+    }
+    
+    .cell {
+        font-size: 1.1em;
+        min-height: 35px;
+    }
+    
+    .cell.selected {
+        box-shadow: inset 0 0 0 2px #2196f3;
+    }
+    
+    .number-pad {
+        gap: 8px;
+        margin: 12px 0;
+    }
+    
+    .number-btn {
+        padding: 12px 8px;
+        font-size: 1.3em;
+        border-radius: 12px;
+        border-width: 2px;
+        min-height: 48px;
     }
     
     .action-buttons {
-        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .btn {
+        padding: 12px 15px;
+        font-size: 0.95em;
+        border-radius: 20px;
+        min-height: 48px;
+    }
+    
+    .celebration-content {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+    
+    .celebration-content h2 {
+        font-size: 2.2em;
+    }
+    
+    .celebration-content p {
+        font-size: 1.2em;
+    }
+}
+
+/* iPhone 17 Pro 专属优化 (6.3寸, 393×852 逻辑像素) */
+@media (max-width: 430px) and (min-height: 800px) {
+    body {
+        padding: 5px;
+    }
+    
+    .container {
+        padding: 10px;
+        max-width: 100%;
+    }
+    
+    h1 {
+        font-size: 1.6em;
+    }
+    
+    .subtitle {
+        font-size: 0.9em;
+    }
+    
+    .difficulty-btn {
+        padding: 7px 10px;
+        font-size: 0.8em;
+    }
+    
+    .game-info {
+        padding: 8px;
+        font-size: 0.85em;
+    }
+    
+    .sudoku-grid {
+        margin: 10px auto;
+        padding: 1.5px;
+        gap: 1.5px;
+    }
+    
+    .cell {
+        font-size: 1em;
+        min-height: 32px;
+    }
+    
+    /* 3x3 宫格边界适配 */
+    .cell:nth-child(3n) {
+        border-right: 2px solid #333;
+    }
+    
+    .cell:nth-child(n+19):nth-child(-n+27),
+    .cell:nth-child(n+46):nth-child(-n+54) {
+        border-bottom: 2px solid #333;
+    }
+    
+    .number-pad {
+        gap: 6px;
+        margin: 10px 0;
+    }
+    
+    .number-btn {
+        padding: 10px 6px;
+        font-size: 1.2em;
+        min-height: 44px;
+    }
+    
+    .action-buttons {
+        gap: 6px;
+    }
+    
+    .btn {
+        padding: 10px 12px;
+        font-size: 0.9em;
+        min-height: 44px;
+    }
+}
+
+/* 横屏模式优化 */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 5px;
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+    
+    .container {
+        padding: 10px;
+        margin: 10px auto;
+    }
+    
+    header {
+        margin-bottom: 8px;
+    }
+    
+    h1 {
+        font-size: 1.4em;
+    }
+    
+    .controls {
+        margin-bottom: 8px;
+    }
+    
+    .sudoku-grid {
+        margin: 8px auto;
+        max-width: 320px;
+    }
+    
+    .number-pad {
+        margin: 8px 0;
+    }
+    
+    .celebration-content {
+        max-height: 90vh;
+        overflow-y: auto;
     }
 }
