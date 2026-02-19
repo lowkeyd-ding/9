@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>九宫格数独 - 儿童练习版</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 九宫格数独</h1>
+            <p class="subtitle">小朋友,来挑战一下吧!</p>
+        </header>
+
+        <div class="controls">
+            <div class="difficulty-selector">
+                <label>难度选择:</label>
+                <button class="difficulty-btn active" data-level="easy">简单 ⭐</button>
+                <button class="difficulty-btn" data-level="medium">中等 ⭐⭐</button>
+                <button class="difficulty-btn" data-level="hard">困难 ⭐⭐⭐</button>
+            </div>
+            
+            <div class="game-info">
+                <span class="timer">⏱️ 时间: <span id="time">00:00</span></span>
+                <span class="mistakes">❌ 错误: <span id="mistakes">0</span></span>
+            </div>
+        </div>
+
+        <div class="sudoku-grid" id="sudokuGrid"></div>
+
+        <div class="number-pad">
+            <button class="number-btn" data-number="1">1</button>
+            <button class="number-btn" data-number="2">2</button>
+            <button class="number-btn" data-number="3">3</button>
+            <button class="number-btn" data-number="4">4</button>
+            <button class="number-btn" data-number="5">5</button>
+            <button class="number-btn" data-number="6">6</button>
+            <button class="number-btn" data-number="7">7</button>
+            <button class="number-btn" data-number="8">8</button>
+            <button class="number-btn" data-number="9">9</button>
+            <button class="number-btn erase-btn" data-number="0">🗑️ 擦除</button>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-hint" id="hintBtn">💡 提示</button>
+            <button class="btn btn-check" id="checkBtn">✅ 检查</button>
+            <button class="btn btn-new" id="newGameBtn">🎲 新游戏</button>
+        </div>
+
+        <!-- 查看成绩按钮 -->
+        <div class="stats-section">
+            <button class="btn btn-stats" id="viewStatsBtn">🏆 查看成绩</button>
+        </div>
+
+        <!-- 庆祝弹窗 -->
+        <div class="celebration" id="celebration">
+            <div class="celebration-content">
+                <h2>🎉 太棒了!</h2>
+                <p>你完成了九宫格!</p>
+                <p class="final-time">用时: <span id="finalTime"></span></p>
+                <p class="final-mistakes">错误: <span id="finalMistakes"></span> 次</p>
+                <p class="final-difficulty">难度: <span id="finalDifficulty"></span></p>
+                <button class="btn btn-new" id="playAgainBtn">再玩一次</button>
+            </div>
+        </div>
+
+        <!-- 成绩统计弹窗 -->
+        <div class="stats-modal" id="statsModal">
+            <div class="stats-content">
+                <div class="stats-header">
+                    <h2>🏆 我的成绩</h2>
+                    <button class="close-btn" id="closeStatsBtn">&times;</button>
+                </div>
+                
+                <!-- 最佳成绩 -->
+                <div class="best-scores-section">
+                    <h3>🌟 各难度最佳成绩</h3>
+                    <div class="best-scores-grid">
+                        <div class="best-score-card easy">
+                            <div class="difficulty-label">简单 ⭐</div>
+                            <div class="best-time" id="bestTimeEasy">--:--</div>
+                            <div class="best-mistakes" id="bestMistakesEasy">- 错误</div>
+                        </div>
+                        <div class="best-score-card medium">
+                            <div class="difficulty-label">中等 ⭐⭐</div>
+                            <div class="best-time" id="bestTimeMedium">--:--</div>
+                            <div class="best-mistakes" id="bestMistakesMedium">- 错误</div>
+                        </div>
+                        <div class="best-score-card hard">
+                            <div class="difficulty-label">困难 ⭐⭐⭐</div>
+                            <div class="best-time" id="bestTimeHard">--:--</div>
+                            <div class="best-mistakes" id="bestMistakesHard">- 错误</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最近记录 -->
+                <div class="recent-games-section">
+                    <h3>📜 最近游戏记录</h3>
+                    <div class="recent-games-list" id="recentGamesList">
+                        <p class="no-records">暂无游戏记录，快来玩一局吧！</p>
+                    </div>
+                </div>
+
+                <!-- 统计按钮 -->
+                <div class="stats-actions">
+                    <button class="btn btn-clear" id="clearStatsBtn">🗑️ 清除记录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
